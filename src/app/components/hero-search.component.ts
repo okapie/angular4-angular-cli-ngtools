@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import { HeroSearchService } from '../services/hero-search.service';
+import { Hero } from '../models/hero';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
@@ -14,8 +14,8 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'my-hero-search',
-  templateUrl: './hero-search.component.html',
-  styleUrls: ['./hero-search.component.css'],
+  templateUrl: '../templates//hero-search.component.html',
+  styleUrls: ['../../assets/css/hero-search.component.css'],
   providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
