@@ -1,4 +1,4 @@
-# Todo
+# angular4-angular-cli-ngtools
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
 
@@ -23,6 +23,22 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
+## Running AOT offline compile
+
+Run `ng build --aot --prod` to execute the aot offline compile via @ngtools/webpack (https://www.npmjs.com/package/@ngtools/webpack).
+
+The built files will be stored in the `dist/` directory same as `ng build` command result.
+
+This npm module realizes not only handling AOT code generation but lazy loading.
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Author
+
+okapie
+
+## Licence
+
+MIT
