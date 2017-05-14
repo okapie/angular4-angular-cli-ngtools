@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {TodoStore, Todo} from './store';
 
 @Component({
@@ -6,11 +7,31 @@ import {TodoStore, Todo} from './store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  todoStore: TodoStore;
-  newTodoText = '';
 
-  constructor(todoStore: TodoStore) {
+export class AppComponent {
+
+  public todoStore: TodoStore;
+
+  public form: FormGroup;
+
+  public newTodoText: AbstractControl | string;
+
+  public model = {
+    errorTextEntry: '',
+    errorWordCount: ''
+  };
+
+  constructor(public fb: FormBuilder,
+              todoStore: TodoStore
+  ) {
+
+    this.form = fb.group({
+
+      'newTodoText': ['', Validators.compose([Validators.required, Validators.maxLength(20)])]
+    });
+
+    this.newTodoText = this.form.controls['newTodoText'];
+
     this.todoStore = todoStore;
   }
 
@@ -49,9 +70,26 @@ export class AppComponent {
   }
 
   addTodo() {
-    if (this.newTodoText.trim().length) {
-      this.todoStore.add(this.newTodoText);
-      this.newTodoText = '';
+
+    this.model.errorTextEntry = '';
+    this.model.errorWordCount = '';
+
+    if (!this.form.valid) {
+
+      if (!this.form.dirty || this.form.value.newTodoText === '') {
+
+        this.model.errorTextEntry = 'Please fill out the form before pressing the Enter key.';
+      } else if (this.form.value.newTodoText.length > 20) {
+
+        this.model.errorWordCount = 'Please enter text less than 20 words.';
+      }
+    } else {
+
+      if (this.form.valid) {
+
+        this.todoStore.add(this.form.value.newTodoText);
+        this.newTodoText = '';
+      }
     }
   }
 }
