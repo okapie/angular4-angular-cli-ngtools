@@ -1,14 +1,14 @@
-import { BlankPage } from './app.po';
+import { TodoPage } from './app.po';
 
-describe('blank App', () => {
-  let page: BlankPage;
+describe('todo App', () => {
+  let page: TodoPage;
 
   beforeEach(() => {
-    page = new BlankPage();
+    page = new TodoPage();
   });
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Tour of Heroes');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });
